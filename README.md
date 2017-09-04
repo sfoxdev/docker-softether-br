@@ -14,3 +14,7 @@ SoftEther VPN Bridge is software that allows you to cascade-connect to a Virtual
 ```
 docker run -d --cap-add NET_ADMIN -p 443:443/tcp -p 992:992/tcp -p 1194:1194/udp -p 5555:5555/tcp --name vpn-br sfoxdev/softether-br
 ```
+
+```
+docker run -d -v /srv/vpnbridge/config:/etc/vpnbridge:Z -v /srv/vpnbridge/logs:/var/log/vpnbridge:Z --cap-add NET_ADMIN -p 443:443/tcp -p 992:992/tcp -p 1194:1194/udp -p 5555:5555/tcp --name vpn-br sfoxdev/softether-br
+```
