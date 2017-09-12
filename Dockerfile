@@ -24,7 +24,7 @@ RUN set -ex ; \
     apk add --no-cache --virtual .run-deps libcap libcrypto1.0 libssl1.0 ncurses-libs readline su-exec ; \
     chown -R softether:softether /usr/vpnbridge ; \
     setcap 'cap_net_bind_service=+ep' /usr/vpnbridge/vpnbridge ; \
-    
+
     cd .. ; \
     rm -rf /usr/vpnclient /usr/bin/vpnclient /usr/vpncmd /usr/bin/vpncmd /usr/vpnserver /usr/bin/vpnserver /usr/bin/vpnbridge \
         /patchs SoftEtherVPN-${SOFTETHER_VERSION:1} ;
@@ -33,5 +33,5 @@ EXPOSE 443/tcp 992/tcp 1194/udp 5555/tcp
 
 VOLUME ["/etc/vpnbridge", "/var/log/vpnbridge"]
 
-ENTRYPOINT ["/entrypoint.sh"]
+USER root
 CMD ["/usr/vpnbridge/vpnbridge", "execsvc"]
