@@ -11,12 +11,13 @@ if [ "$1" = '/usr/vpnbridge/vpnbridge' ]; then
           ln -s /var/log/vpnbridge/$d /usr/vpnbridge/$d
         fi
     done
-  
+
     chown -R softether:softether /usr/vpnbridge
     setcap 'cap_net_bind_service=+ep' /usr/vpnbridge/vpnbridge
 
     echo "Starting SoftEther VPN Bridge"
-    exec su-exec softether sh -c "`echo $@`"
+    #exec su-exec softether sh -c "`echo $@`"
+    exec sh -c "`echo $@`"
 else
     exec "$@"
 fi
