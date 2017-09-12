@@ -19,12 +19,12 @@ RUN set -ex ; \
 
     strip /usr/vpnbridge/vpnbridge ; \
     mkdir -p /etc/vpnbridge /var/log/vpnbridge; ln -s /etc/vpnbridge/vpn_bridge.config /usr/vpnbridge/vpn_bridge.config ; \
-    chown -R softether:softether /usr/vpnbridge ; \
-    setcap 'cap_net_bind_service=+ep' /usr/vpnbridge/vpnbridge ; \
 
     apk del .build-deps ; \
     apk add --no-cache --virtual .run-deps libcap libcrypto1.0 libssl1.0 ncurses-libs readline su-exec ; \
-
+    chown -R softether:softether /usr/vpnbridge ; \
+    setcap 'cap_net_bind_service=+ep' /usr/vpnbridge/vpnbridge ; \
+    
     cd .. ; \
     rm -rf /usr/vpnclient /usr/bin/vpnclient /usr/vpncmd /usr/bin/vpncmd /usr/vpnserver /usr/bin/vpnserver /usr/bin/vpnbridge \
         /patchs SoftEtherVPN-${SOFTETHER_VERSION:1} ;
